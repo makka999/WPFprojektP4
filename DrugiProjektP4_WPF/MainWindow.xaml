@@ -24,6 +24,7 @@
                     <DataGridTextColumn Binding="{Binding RodzajPlyty}" Header="RodzajPlyty" Width="*"/>
                     <DataGridTextColumn Binding="{Binding StatusPosiadania}" Header="StatusPosiadania" Width="*"/>
                     <DataGridTextColumn Binding="{Binding IdNabycie}" Header="IdNabycie" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding DataNabycia}" Header="IdNabycie" Width="*"/>
                 </DataGrid.Columns>
 
             </DataGrid>

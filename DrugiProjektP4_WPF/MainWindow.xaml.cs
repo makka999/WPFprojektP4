@@ -27,21 +27,36 @@ namespace DrugiProjektP4_WPF
         public MainWindow()
         {
             InitializeComponent();
-            _plytySource = (CollectionViewSource)FindResource(nameof(_plytySource));
+            //_plytySource = (CollectionViewSource)FindResource(nameof(_plytySource));
 
         }
 
 
         private void view(object sender, RoutedEventArgs e)
         {
-           // var result = 
-            //    from 
+            var result = 
+                from p in context.Plyta
+                join n in context.Nabycies on p.IdNabycie equals n.IdNabycie
+                select new {
+                    IdPlyta = p.IdPlyta,
+                    Nazwa = p.Nazwa,
+                    Komentarz = p.Komentarz,
+                    RodzajPlyty = p.RodzajPlyty,
+                    StatusPosiadania = p.StatusPosiadania,
+                    IdNabycie = p.IdPlyta,
+                    DataNabycia = n.DataNabycia
+                };
 
+           // foreach (var item in result.ToList())
+           // {
+           //     Console.WriteLine(result.);
+           // }
 
+            PlytyDataGrid.ItemsSource = result.ToList();
 
-            context.Database.EnsureCreated();
-            context.Plyta.Load();
-            _plytySource.Source = context.Plyta.Local.ToObservableCollection();
+            //context.Database.EnsureCreated();
+            //context.Plyta.Load();
+            //_plytySource.Source = context.Plyta.Local.ToObservableCollection();
         }
     }
 }
