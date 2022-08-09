@@ -34,5 +34,16 @@ namespace DrugiProjektP4_WPF
             UtworDataGrid.ItemsSource = result.ToList();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            context.SaveChanges();
+
+            UtworDataGrid.Items.Refresh();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            UtworDataGrid.Items.Refresh();
+        }
     }
 }

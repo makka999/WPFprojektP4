@@ -11,15 +11,22 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
-            <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="True" 
-            HorizontalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2">
+            <ScrollViewer MaxHeight="370">
+                <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="True" 
+            HorizontalAlignment="Center" CanUserAddRows="False">
 
             </DataGrid>
-
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="aaaaaa" Click="Button_Click"></Button>
+                <Button Content="bbbbbb" Click="Button_Click_1"></Button>
+            </StackPanel>
         </StackPanel>
-        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
             <Button Content="aaaaaa"></Button>
             <Button Content="bbbbbb"></Button>
         </StackPanel>
