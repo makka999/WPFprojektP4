@@ -6,14 +6,23 @@
         xmlns:local="clr-namespace:DrugiProjektP4_WPF"
         mc:Ignorable="d"
         Title="DetailsWindow" Height="450" Width="800">
+    
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
             <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="True" 
             HorizontalAlignment="Center">
 
             </DataGrid>
-            <Button></Button>
-            <Button></Button>
+
         </StackPanel>
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <Button Content="aaaaaa"></Button>
+            <Button Content="bbbbbb"></Button>
+        </StackPanel>
+
     </Grid>
 </Window>
