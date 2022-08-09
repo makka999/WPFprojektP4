@@ -5,26 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrugiProjektP4_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="view">
-    <Window.Resources>
-        <CollectionViewSource x:Key="_plytySource">
-            
-        </CollectionViewSource>
-    </Window.Resources>
+        Title="MainWindow" Height="700" Width="1200">
+
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <DataGrid x:Name="PlytyDataGrid" AutoGenerateColumns="False" 
-          EnableRowVirtualization="True" 
-          ItemsSource="{Binding Source={StaticResource _plytySource}}" 
-          Margin="13,13,43,209" RowDetailsVisibilityMode="VisibleWhenSelected" HorizontalAlignment="Center" RenderTransformOrigin="0.496,0.711">
+            <DataGrid x:Name="PlytyDataGrid" Margin="20"
+            HorizontalAlignment="Center" MouseDoubleClick="PlytyDataGrid_MouseDoubleClick" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False">
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding IdPlyta}" Header="Id" Width="SizeToHeader"/>
-                    <DataGridTextColumn Binding="{Binding Nazwa}" Header="Nazwa" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding Komentarz}" Header="Komentarz" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding RodzajPlyty}" Header="RodzajPlyty" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding StatusPosiadania}" Header="StatusPosiadania" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding IdNabycie}" Header="IdNabycie" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding DataNabycia}" Header="IdNabycie" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding IdPlyta, Mode=OneWay}" Header="Id" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Nazwa, Mode=OneWay}" Header="Nazwa" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Komentarz, Mode=OneWay}" Header="Komentarz" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding RodzajPlyty, Mode=OneWay}" Header="RodzajPlyty" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding StatusPosiadania, Mode=OneWay}" Header="StatusPosiadania" Width="*"/>
+
                 </DataGrid.Columns>
 
             </DataGrid>
