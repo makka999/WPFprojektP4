@@ -20,10 +20,14 @@ namespace DrugiProjektP4_WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
+
     public partial class MainWindow : Window
     {
+        
         private readonly KolekcjaPlytContext context = new KolekcjaPlytContext();
-       // private CollectionViewSource _plytySource;
+        
+        // private CollectionViewSource _plytySource;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,23 +35,11 @@ namespace DrugiProjektP4_WPF
             //Plytum plyta = new Plytum();
             var plyta = context.Plyta;
 
-            
+
 
             PlytyDataGrid.ItemsSource = plyta.ToList();
         }
 
-        class wynik
-        {
-            public int IdPlyta { get; set; }
-            public string Nazwa { get; set; }
-            public string Komentarz { get; set; }
-            public string RodzajPlyty { get; set; }
-            public string StatusPosiadania { get; set; }
-            public int? IdNabycie { get; set; }
-            public string? DataNabycia { get; set; }
-
-
-        }
 
 
         private void PlytyDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -60,6 +52,12 @@ namespace DrugiProjektP4_WPF
             // var a = db.SelectedItem as wynik;
             // DetailsWindow detailsWindow = new DetailsWindow(a.IdPlyta);
             // detailsWindow.Show();
+        }
+        public event RoutedEventHandler GotFocus; //stackoverflow & docs.microsoft.com // nazwe mozna skrocic
+        private void PlytyDataGrid_GotFocus(object sender, RoutedEventArgs e)
+        {
+            //DetailsWindow detailsWindow = (DetailsWindow)sender;
+
         }
 
 
