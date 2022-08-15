@@ -38,5 +38,13 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Margin" Value="15"/>
     </Style>
+
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Margin" Value="15"/>
+    </Style>
+    
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Margin" Value="15"/>
+    </Style>
 </ResourceDictionary>
 
