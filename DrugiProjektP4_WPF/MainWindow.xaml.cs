@@ -85,23 +85,34 @@ namespace DrugiProjektP4_WPF
             //context.Nabycies.Add(addNabycie);
             //context.SaveChanges();
 
+            var addPlyta = new Plytum
+            {
+                Nazwa = "sa",
+                RodzajPlyty = "asasaas",
 
+                StatusPosiadania = "Dodana z wpf",
+
+            };
+            context.Plyta.Add(addPlyta);
+            // _context.Plyta.Load();
+            context.SaveChanges();
 
             //int idNabyciaAdd = addNabycie.IdNabycie;
 
-            using (var _context = new KolekcjaPlytContext())
-            {
-                var addPlyta = new Plytum
-                {
-                    Nazwa = Convert.ToString(nazwa),
-                    RodzajPlyty = Convert.ToString(rodzajPlyty),
+            //using (var _context = new KolekcjaPlytContext())
+            //{
+            //    var addPlyta = new Plytum
+            //    {
+            //        Nazwa = "sa",
+            //        RodzajPlyty = "asasaas",
 
-                    StatusPosiadania = "Dodana z wpf",
+            //        StatusPosiadania = "Dodana z wpf",
 
-                };
-                _context.Plyta.Add(addPlyta);
-                _context.SaveChanges();
-            }
+            //    };
+            //    _context.Plyta.Add(addPlyta);
+            //   // _context.Plyta.Load();
+            //    _context.SaveChanges();
+            //}
             //var addPlyta = new Plytum();
                 
             //addPlyta.Nazwa = Convert.ToString(nazwa);
