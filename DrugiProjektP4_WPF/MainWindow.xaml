@@ -22,6 +22,28 @@
                 </DataGrid.Columns>
 
             </DataGrid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Label>Data nabycia</Label>
+                    <TextBox Name="DataNabyciaBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label>Cena</Label>
+                    <TextBox Name="CenaBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label>Nazwa</Label>
+                    <TextBox Name="NazwaBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label>Rodzaj plyty</Label>
+                    <TextBox Name="RodzajPlytyBox"></TextBox>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Dodaj plyte" Click="Botton_AddPlyty"></Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

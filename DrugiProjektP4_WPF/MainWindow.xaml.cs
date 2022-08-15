@@ -60,6 +60,61 @@ namespace DrugiProjektP4_WPF
 
         }
 
+        private void Botton_AddPlyty(object sender, RoutedEventArgs e)
+        {
+            var dataNabycia = DataNabyciaBox.Text;
+            var cena = CenaBox.Text;
+            var nazwa = NazwaBox.Text;
+            var rodzajPlyty = RodzajPlytyBox.Text;
+            //cena = Convert.ToDecimal(cena);
+            //var addNabycie = new Nabycie();
+            //addNabycie.Cena = Convert.ToDecimal(cena);
+            //addNabycie.DataNabycia = Convert.ToDateTime(dataNabycia);
+
+
+            //using (var _context = new KolekcjaPlytContext())
+            //{
+            //    var addNabycie = new Nabycie
+            //    {
+            //        Cena = Convert.ToDecimal(cena),
+            //        DataNabycia = Convert.ToDateTime(dataNabycia)
+            //    };
+            //    _context.Add(addNabycie);
+            //    _context.SaveChanges();
+            //}
+            //context.Nabycies.Add(addNabycie);
+            //context.SaveChanges();
+
+
+
+            //int idNabyciaAdd = addNabycie.IdNabycie;
+
+            using (var _context = new KolekcjaPlytContext())
+            {
+                var addPlyta = new Plytum
+                {
+                    Nazwa = Convert.ToString(nazwa),
+                    RodzajPlyty = Convert.ToString(rodzajPlyty),
+
+                    StatusPosiadania = "Dodana z wpf",
+
+                };
+                _context.Plyta.Add(addPlyta);
+                _context.SaveChanges();
+            }
+            //var addPlyta = new Plytum();
+                
+            //addPlyta.Nazwa = Convert.ToString(nazwa);
+            //addPlyta.RodzajPlyty = Convert.ToString(nazwa);
+            //addPlyta.IdNabycie = idNabyciaAdd;
+            //addPlyta.StatusPosiadania = "Dodana z wpf";
+
+            //context.Plyta.Add(addPlyta);
+            //context.SaveChanges();
+            
+            PlytyDataGrid.Items.Refresh();
+        }
+
 
         //private void view(object sender, RoutedEventArgs e)
         // {
