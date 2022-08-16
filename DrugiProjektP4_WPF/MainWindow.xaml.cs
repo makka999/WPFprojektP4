@@ -27,21 +27,13 @@ namespace DrugiProjektP4_WPF
         
         private readonly KolekcjaPlytContext context = new KolekcjaPlytContext();
         
-        // private CollectionViewSource _plytySource;
+
         public MainWindow()
         {
             InitializeComponent();
-            //_plytySource = (CollectionViewSource)FindResource(nameof(_plytySource));
-            //Plytum plyta = new Plytum();
             var plyta = context.Plyta;
-
-
-
             PlytyDataGrid.ItemsSource = plyta.ToList();
-
         }
-
-
 
         private void PlytyDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -49,10 +41,6 @@ namespace DrugiProjektP4_WPF
             var select = dg.SelectedItem as Plytum;
             DetailsWindow detailsWindow = new DetailsWindow(select);
             detailsWindow.Show();
-            // DataGrid db = sender as DataGrid;
-            // var a = db.SelectedItem as wynik;
-            // DetailsWindow detailsWindow = new DetailsWindow(a.IdPlyta);
-            // detailsWindow.Show();
         }
 
         private void Botton_AddPlyty(object sender, RoutedEventArgs e)
@@ -80,34 +68,35 @@ namespace DrugiProjektP4_WPF
             //context.Nabycies.Add(addNabycie);
             //context.SaveChanges();
 
-            var addPlyta = new Plytum
-            {
-                Nazwa = "sa",
-                RodzajPlyty = "asasaas",
+            //var addPlyta = new Plytum
+            //{
+            //    Nazwa = "sa",
+            //    RodzajPlyty = "asasaas",
+            //    Komentarz = "abyby",
+            //    StatusPosiadania = "Dodanawpf",  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //    IdNabycie = 19
 
-                StatusPosiadania = "Dodana z wpf"
+            //};
+            //context.Plyta.Add(addPlyta);
 
-            };
-            context.Plyta.Add(addPlyta);
-            // _context.Plyta.Load();
-            context.SaveChanges();
+            //context.SaveChanges();
 
             //int idNabyciaAdd = addNabycie.IdNabycie;
 
-            //using (var _context = new KolekcjaPlytContext())
-            //{
-            //    var addPlyta = new Plytum
-            //    {
-            //        Nazwa = "sa",
-            //        RodzajPlyty = "asasaas",
-
-            //        StatusPosiadania = "Dodana z wpf",
-
-            //    };
-            //    _context.Plyta.Add(addPlyta);
-            //   // _context.Plyta.Load();
-            //    _context.SaveChanges();
-            //}
+            using (var _context = new KolekcjaPlytContext())
+            {
+                var addPlyta = new Plytum
+                {
+                    Nazwa = "sa",
+                    RodzajPlyty = "asass",
+                    Komentarz = "abybyl",
+                    StatusPosiadania = "Dodazwpf",
+                    IdNabycie = 12
+                };
+                _context.Plyta.Add(addPlyta);
+               // _context.Plyta.Load();
+                _context.SaveChanges();
+            }
             //var addPlyta = new Plytum();
                 
             //addPlyta.Nazwa = Convert.ToString(nazwa);
@@ -121,33 +110,5 @@ namespace DrugiProjektP4_WPF
             PlytyDataGrid.Items.Refresh();
         }
 
-
-        //private void view(object sender, RoutedEventArgs e)
-        // {
-        //  var result = 
-        //      from p in context.Plyta
-        //      join n in context.Nabycies on p.IdNabycie equals n.IdNabycie
-        //      select new {
-        //          IdPlyta = p.IdPlyta,
-        //          Nazwa = p.Nazwa,
-        //          Komentarz = p.Komentarz,
-        //          RodzajPlyty = p.RodzajPlyty,
-        //          StatusPosiadania = p.StatusPosiadania,
-        //          IdNabycie = p.IdPlyta,
-        //          DataNabycia = n.DataNabycia
-        //      };
-        //
-        //  PlytyDataGrid.ItemsSource = result.ToList();
-        // foreach (var item in result.ToList())
-        // {
-        //     Console.WriteLine(result.);
-        // }
-
-
-
-        //context.Database.EnsureCreated();
-        //context.Plyta.Load();
-        //_plytySource.Source = context.Plyta.Local.ToObservableCollection();
-        //}
     }
 }

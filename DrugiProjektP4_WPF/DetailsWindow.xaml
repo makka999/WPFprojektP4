@@ -15,31 +15,31 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="0">
             <ScrollViewer MaxHeight="370">
                 <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="False" 
-            HorizontalAlignment="Center" CanUserAddRows="False">
+            HorizontalAlignment="Center" CanUserAddRows="False" IsReadOnly="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Tytul, Mode=OneWay}" Header="Tytul" Width="160"/>
-                        <DataGridTextColumn Binding="{Binding GatunekMuzyczny, Mode=OneWay}" Header="Gatunek Muzyczny" Width="160"/>
+                        <DataGridTextColumn Binding="{Binding Tytul}" Header="Tytul" Width="160"/>
+                        <DataGridTextColumn Binding="{Binding GatunekMuzyczny}" Header="Gatunek Muzyczny" Width="160"/>
 
                      </DataGrid.Columns>
 
                 </DataGrid>
             </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Zapisz zmiany" Click="Button_Click"></Button>
-                <Button Content="Reset" Click="Button_Click_1"></Button>
+                <Button Content="Zapisz zmiany" Click="Button_Save"></Button>
+                <Button Content="Reset" Click="Button_Reset"></Button>
             </StackPanel>
         </StackPanel>
         <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label>Tytul</Label>
                 <TextBox Name="TytulBox"></TextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label>Tytul</Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Gatunek Muzyczny</Label>
                 <TextBox Name="GarynekBox"></TextBox>
             </StackPanel>
 
-            <Button Content="aaaaaa" Click="Button_Click_2"></Button>
+            <Button Content="Dodaj utwor" Click="Button_Add"></Button>
 
         </StackPanel>
 
