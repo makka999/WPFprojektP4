@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <DataGrid x:Name="PlytyDataGrid" Margin="20"
-            HorizontalAlignment="Center" MouseDoubleClick="PlytyDataGrid_MouseDoubleClick" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" GotFocus="PlytyDataGrid_GotFocus">
+            HorizontalAlignment="Center" MouseDoubleClick="PlytyDataGrid_MouseDoubleClick" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" >
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding IdPlyta, Mode=OneWay}" Header="Id" Width="SizeToHeader"/>

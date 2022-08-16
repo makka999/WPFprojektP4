@@ -38,6 +38,7 @@ namespace DrugiProjektP4_WPF
 
 
             PlytyDataGrid.ItemsSource = plyta.ToList();
+
         }
 
 
@@ -52,12 +53,6 @@ namespace DrugiProjektP4_WPF
             // var a = db.SelectedItem as wynik;
             // DetailsWindow detailsWindow = new DetailsWindow(a.IdPlyta);
             // detailsWindow.Show();
-        }
-        public event RoutedEventHandler GotFocus; //stackoverflow & docs.microsoft.com // nazwe mozna skrocic
-        private void PlytyDataGrid_GotFocus(object sender, RoutedEventArgs e)
-        {
-            //DetailsWindow detailsWindow = (DetailsWindow)sender;
-
         }
 
         private void Botton_AddPlyty(object sender, RoutedEventArgs e)
@@ -90,7 +85,7 @@ namespace DrugiProjektP4_WPF
                 Nazwa = "sa",
                 RodzajPlyty = "asasaas",
 
-                StatusPosiadania = "Dodana z wpf",
+                StatusPosiadania = "Dodana z wpf"
 
             };
             context.Plyta.Add(addPlyta);

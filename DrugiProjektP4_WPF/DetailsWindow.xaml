@@ -11,24 +11,36 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="0">
             <ScrollViewer MaxHeight="370">
-                <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="True" 
+                <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="False" 
             HorizontalAlignment="Center" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Tytul, Mode=OneWay}" Header="Tytul" Width="160"/>
+                        <DataGridTextColumn Binding="{Binding GatunekMuzyczny, Mode=OneWay}" Header="Gatunek Muzyczny" Width="160"/>
 
-            </DataGrid>
+                     </DataGrid.Columns>
+
+                </DataGrid>
             </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Zapisz zmiany" Click="Button_Click"></Button>
                 <Button Content="Reset" Click="Button_Click_1"></Button>
             </StackPanel>
         </StackPanel>
-        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
-            <Button Content="aaaaaa"></Button>
-            <Button Content="bbbbbb"></Button>
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label>Tytul</Label>
+                <TextBox Name="TytulBox"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Tytul</Label>
+                <TextBox Name="GarynekBox"></TextBox>
+            </StackPanel>
+
+            <Button Content="aaaaaa" Click="Button_Click_2"></Button>
+
         </StackPanel>
 
     </Grid>
