@@ -36,19 +36,21 @@ namespace DrugiProjektP4_WPF
             UtworDataGrid.ItemsSource = result.ToList();
         }
       
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Save(object sender, RoutedEventArgs e)
         {
             context.SaveChanges();
 
             UtworDataGrid.Items.Refresh();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Reset(object sender, RoutedEventArgs e)
         {
+            var result = context.Utwors.Where(p => p.IdPlyta == UsedPlyta.IdPlyta);
+            UtworDataGrid.ItemsSource = result.ToList();
             UtworDataGrid.Items.Refresh();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Add(object sender, RoutedEventArgs e)
         {
             var tytul = TytulBox.Text;
             var gatunek = GarynekBox.Text;
@@ -72,19 +74,7 @@ namespace DrugiProjektP4_WPF
 
 
             }
-            //{
-            //    var addPlyta = new Plytum
-            //    {
-            //        Nazwa = "sa",
-            //        RodzajPlyty = "asasaas",
 
-            //        StatusPosiadania = "Dodana z wpf",
-
-            //    };
-            //    _context.Plyta.Add(addPlyta);
-            //   // _context.Plyta.Load();
-            //    _context.SaveChanges();
-            //}
         }
     }
 }
