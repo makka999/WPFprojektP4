@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrugiProjektP4_WPF"
         mc:Ignorable="d"
-        Title="DetailsWindow" Height="450" Width="800">
+        Title="DetailsWindow" Height="650" Width="1100">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,6 +13,20 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="0">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <DataGrid x:Name="PlytyModyfiDataGrid" Margin="20"
+            HorizontalAlignment="Center" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" IsReadOnly="False">
+
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Nazwa}" Header="Nazwa" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding RodzajPlyty}" Header="RodzajPlyty" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding StatusPosiadania}" Header="StatusPosiadania" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Komentarz}" Header="Komentarz" Width="100"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+                <Button Content="Zapisz" Click="Button_ModPlyta"></Button>
+            </StackPanel>
             <ScrollViewer MaxHeight="370">
                 <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="False" 
             HorizontalAlignment="Center" CanUserAddRows="False" IsReadOnly="False">
@@ -32,13 +46,16 @@
         <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label>Tytul</Label>
-                <TextBox Name="TytulBox"></TextBox>
+                <TextBox Name="TytulBox" LostFocus="Box_LostFocus"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label>Gatunek Muzyczny</Label>
-                <TextBox Name="GarynekBox"></TextBox>
+                <TextBox Name="GarynekBox" LostFocus="Box_LostFocus"></TextBox>
             </StackPanel>
-
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Wykonawca</Label>
+                <ComboBox Name="ComboBoxWykonawca"></ComboBox>
+            </StackPanel>
             <Button Content="Dodaj utwor" Click="Button_Add"></Button>
 
         </StackPanel>
