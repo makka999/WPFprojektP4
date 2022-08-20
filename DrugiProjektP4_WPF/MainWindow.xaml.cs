@@ -40,7 +40,15 @@ namespace DrugiProjektP4_WPF
             DataGrid dg = sender as DataGrid;
             var select = dg.SelectedItem as Plytum;
             DetailsWindow detailsWindow = new DetailsWindow(select);
+            detailsWindow.Closed += DetailsWindow_Closed;
             detailsWindow.Show();
+        }
+
+        private void DetailsWindow_Closed(object? sender, EventArgs e)
+        {
+            KolekcjaPlytContext _context = new KolekcjaPlytContext();
+            var plyta = _context.Plyta;
+            PlytyDataGrid.ItemsSource = plyta.ToList();
         }
 
         private void Botton_AddPlyty(object sender, RoutedEventArgs e)
@@ -49,66 +57,34 @@ namespace DrugiProjektP4_WPF
             var cena = CenaBox.Text;
             var nazwa = NazwaBox.Text;
             var rodzajPlyty = RodzajPlytyBox.Text;
-            //cena = Convert.ToDecimal(cena);
-            //var addNabycie = new Nabycie();
-            //addNabycie.Cena = Convert.ToDecimal(cena);
-            //addNabycie.DataNabycia = Convert.ToDateTime(dataNabycia);
-
-
-            //using (var _context = new KolekcjaPlytContext())
-            //{
-            //    var addNabycie = new Nabycie
-            //    {
-            //        Cena = Convert.ToDecimal(cena),
-            //        DataNabycia = Convert.ToDateTime(dataNabycia)
-            //    };
-            //    _context.Add(addNabycie);
-            //    _context.SaveChanges();
-            //}
-            //context.Nabycies.Add(addNabycie);
-            //context.SaveChanges();
-
-            //var addPlyta = new Plytum
-            //{
-            //    Nazwa = "sa",
-            //    RodzajPlyty = "asasaas",
-            //    Komentarz = "abyby",
-            //    StatusPosiadania = "Dodanawpf",  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //    IdNabycie = 19
-
-            //};
-            //context.Plyta.Add(addPlyta);
-
-            //context.SaveChanges();
-
-            //int idNabyciaAdd = addNabycie.IdNabycie;
-
-            using (var _context = new KolekcjaPlytContext())
-            {
-                var addPlyta = new Plytum
-                {
-                    Nazwa = "sa",
-                    RodzajPlyty = "asass",
-                    Komentarz = "abybyl",
-                    StatusPosiadania = "Dodazwpf",
-                    IdNabycie = 12
-                };
-                _context.Plyta.Add(addPlyta);
-               // _context.Plyta.Load();
-                _context.SaveChanges();
-            }
-            //var addPlyta = new Plytum();
-                
-            //addPlyta.Nazwa = Convert.ToString(nazwa);
-            //addPlyta.RodzajPlyty = Convert.ToString(nazwa);
-            //addPlyta.IdNabycie = idNabyciaAdd;
-            //addPlyta.StatusPosiadania = "Dodana z wpf";
-
-            //context.Plyta.Add(addPlyta);
-            //context.SaveChanges();
             
+            var addNabycie = new Nabycie
+            {
+                Cena = Convert.ToDecimal(cena),
+                DataNabycia = Convert.ToDateTime(dataNabycia)
+            };
+            
+            context.Nabycies.Add(addNabycie);
+            context.SaveChanges();
+
+            var addPlyta = new Plytum
+            {
+                Nazwa = nazwa,
+                RodzajPlyty = rodzajPlyty,
+                Komentarz = null,
+                StatusPosiadania = "z wpf",  
+                IdNabycie = addNabycie.IdNabycie
+
+            };
+
+            context.Plyta.Add(addPlyta);
+            context.SaveChanges();
+            var plyta = context.Plyta;
+            PlytyDataGrid.ItemsSource = plyta.ToList();
             PlytyDataGrid.Items.Refresh();
         }
+
+
 
     }
 }
