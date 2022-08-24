@@ -42,10 +42,7 @@ namespace DrugiProjektP4_WPF
             var plytaModyfi = contextForPlyta.Plyta.Where(p => p.IdPlyta == _plyta.IdPlyta);
             PlytyModyfiDataGrid.ItemsSource = plytaModyfi.ToList();
 
-            List<Wykonawca> wykonawcas = context.Wykonawcas.ToList();
-            ComboBoxWykonawca.ItemsSource = wykonawcas;
-            ComboBoxWykonawca.DisplayMemberPath = "Wykonawca1";
-            ComboBoxWykonawca.SelectedValuePath = "IdWykonawca";
+
             
 
             //object zespoly = context.Wykonawcas;
@@ -115,6 +112,20 @@ namespace DrugiProjektP4_WPF
             string txt = sender as string;
 
 
+        }
+
+        private void Button_Add_Wykonawca(object sender, RoutedEventArgs e)
+        {
+            Wykonawcy wykonawcy = new Wykonawcy();
+            wykonawcy.Show();
+        }
+
+        private void ComboBoxWykonawca_GotMouseCapture(object sender, MouseEventArgs e)
+        {
+            List<Wykonawca> wykonawcas = context.Wykonawcas.ToList();
+            ComboBoxWykonawca.ItemsSource = wykonawcas;
+            ComboBoxWykonawca.DisplayMemberPath = "Wykonawca1";
+            ComboBoxWykonawca.SelectedValuePath = "IdWykonawca";
         }
     }
 }

@@ -9,7 +9,7 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="700"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="0">
@@ -54,8 +54,9 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label>Wykonawca</Label>
-                <ComboBox Name="ComboBoxWykonawca"></ComboBox>
+                <ComboBox Name="ComboBoxWykonawca" GotMouseCapture="ComboBoxWykonawca_GotMouseCapture"></ComboBox>
             </StackPanel>
+            <Button Content="Dodaj wykonawce" Click="Button_Add_Wykonawca"></Button>
             <Button Content="Dodaj utwor" Click="Button_Add"></Button>
 
         </StackPanel>
