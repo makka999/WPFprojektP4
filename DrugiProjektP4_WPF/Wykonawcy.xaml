@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrugiProjektP4_WPF"
         mc:Ignorable="d"
-        Title="Wykonawcy" Height="450" Width="800">
+        Title="Wykonawcy" Height="550" Width="900">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
+            <Label VerticalAlignment="Center" HorizontalAlignment="Center">Artysci</Label>
+
+            <DataGrid x:Name="CzlonekDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" IsReadOnly="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Czlonek1}" Header="Nazwa" Width="160"/>
+                    <DataGridTextColumn Binding="{Binding Rola}" Header="Rola" Width="160"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <Label>Wykonawca</Label>
+            <ComboBox Name="ComboBoxWykonawca" GotMouseCapture="ComboBoxWykonawca_GotMouseCapture" SelectionChanged="ComboBoxWykonawca_SelectionChanged"></ComboBox>
+            <TextBox Name="BoxWykonawca">Podaj wykonawce</TextBox>
+            <Button Content="Dodaj wykonawce" Click="Button_ClickDodajWykonawce"></Button>
+            <Label>Dodawanie artysty</Label>
+            <Label>Nazwa</Label>
+            <TextBox Name="BoxNazwa">Podaj artyste</TextBox>
+            <Label>Rola</Label>
+            <TextBox Name="BoxRola">Podaj role</TextBox>
+            <Button Content="Dodaj artyste" Click="Button_ClickDodajCzlonka"></Button>
+        </StackPanel>
     </Grid>
+    
 </Window>
