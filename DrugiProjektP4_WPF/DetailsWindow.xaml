@@ -44,22 +44,14 @@
             </StackPanel>
         </StackPanel>
         <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>Tytul</Label>
-                <TextBox Name="TytulBox" LostFocus="Box_LostFocus"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>Gatunek Muzyczny</Label>
-                <TextBox Name="GarynekBox" LostFocus="Box_LostFocus"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>Wykonawca</Label>
-                <ComboBox Name="ComboBoxWykonawca" GotMouseCapture="ComboBoxWykonawca_GotMouseCapture"></ComboBox>
-            </StackPanel>
+            <Label>Tytul</Label>
+            <TextBox Name="TytulBox" LostFocus="Box_LostFocus"></TextBox>
+            <Label>Gatunek Muzyczny</Label>
+            <TextBox Name="GarynekBox" LostFocus="Box_LostFocus"></TextBox>
+            <Label>Wykonawca</Label>
+            <ComboBox Name="ComboBoxWykonawca" GotMouseCapture="ComboBoxWykonawca_GotMouseCapture"></ComboBox>
             <Button Content="Dodaj wykonawce" Click="Button_Add_Wykonawca"></Button>
             <Button Content="Dodaj utwor" Click="Button_Add"></Button>
-
         </StackPanel>
-
     </Grid>
 </Window>
