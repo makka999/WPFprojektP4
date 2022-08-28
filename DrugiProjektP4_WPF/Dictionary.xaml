@@ -1,6 +1,7 @@
 ﻿<!--https://stackoverflow.com/questions/21976803/wpf-datagrid-style-->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:l="clr-namespace:DrugiProjektP4_WPF">
 
 
 
@@ -36,16 +37,24 @@
         <Setter Property="FontSize" Value="15" />
         <Setter Property="Height" Value="25"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Margin" Value="8"/>
     </Style>
 
     <Style TargetType="{x:Type Label}">
-        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Margin" Value="6"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
     
     <Style TargetType="{x:Type TextBox}">
-        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Margin" Value="8"/>
         <Setter Property="MinWidth" Value="40"/>
+        <Setter Property="l:EventHelper.LeftClick" Value="{Binding MyCommand}"/>
+    </Style>
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Margin" Value="8"/>
     </Style>
 </ResourceDictionary>
 
