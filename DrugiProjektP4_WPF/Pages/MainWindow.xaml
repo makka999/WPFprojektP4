@@ -81,7 +81,8 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Dodaj plyte" Click="Botton_AddPlyty"></Button>
+                <Button Content="Dodaj plyte" Click="Botton_AddPlyty">
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DrugiProjektP4_WPF"
+        xmlns:local="clr-namespace:DrugiProjektP4_WPF" xmlns:local1="clr-namespace:DrugiProjektP4_WPF.DataValidation"
         mc:Ignorable="d"
         Title="DetailsWindow" Height="650" Width="1100">
-    
+    <Window.DataContext>
+        <local1:ObservableObjectDetalisWindow/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="700"/>
@@ -45,9 +48,26 @@
         </StackPanel>
         <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
             <Label>Tytul</Label>
-            <TextBox Name="TytulBox" LostFocus="Box_LostFocus"></TextBox>
+            <TextBox Name="TytulBox" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="tytulBox" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:MaxCharacterRule MaxCharacters="80"/>
+                            <local1:EmptyRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label>Gatunek Muzyczny</Label>
-            <TextBox Name="GarynekBox" LostFocus="Box_LostFocus"></TextBox>
+            <TextBox Name="GarynekBox" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="garynekBox" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:MaxCharacterRule MaxCharacters="20"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label>Wykonawca</Label>
             <ComboBox Name="ComboBoxWykonawca" GotMouseCapture="ComboBoxWykonawca_GotMouseCapture"></ComboBox>
             <Button Content="Dodaj wykonawce" Click="Button_Add_Wykonawca"></Button>

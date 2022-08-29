@@ -13,14 +13,14 @@
             </Grid>
         </Border>
     </ControlTemplate>
-
+    <!--<Style TargetType="Grid">
+        <Setter Property="Background" Value="LightGray"/>
+    </Style>-->
     <Style TargetType="DataGrid">
         <Style.Triggers>
             <Trigger Property="Focusable" Value="True">
                 <Setter Property="Background" Value="Aqua"/>
             </Trigger>
-
- 
 
         </Style.Triggers>
     </Style>

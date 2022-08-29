@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DrugiProjektP4_WPF.DataBase;
 using Microsoft.EntityFrameworkCore;
+using DrugiProjektP4_WPF.DataValidation;
 
 namespace DrugiProjektP4_WPF
 {
@@ -22,7 +23,7 @@ namespace DrugiProjektP4_WPF
     /// </summary>
 
 
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window 
     {
         
         private readonly KolekcjaPlytContext context = new KolekcjaPlytContext();
@@ -33,7 +34,7 @@ namespace DrugiProjektP4_WPF
             InitializeComponent();
             var plyta = context.Plyta;
             PlytyDataGrid.ItemsSource = plyta.ToList();
-            
+
         }
 
         private void PlytyDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -58,31 +59,35 @@ namespace DrugiProjektP4_WPF
             var cena = CenaBox.Text;
             var nazwa = NazwaBox.Text;
             var rodzajPlyty = RodzajPlytyBox.Text;
-            
-            var addNabycie = new Nabycie
+
+            if (!string.IsNullOrEmpty(dataNabycia) && !string.IsNullOrEmpty(nazwa) && !string.IsNullOrEmpty(rodzajPlyty))
             {
-                Cena = Convert.ToDecimal(cena),
-                DataNabycia = Convert.ToDateTime(dataNabycia)
-            };
-            
-            context.Nabycies.Add(addNabycie);
-            context.SaveChanges();
+                var addNabycie = new Nabycie
+                {
+                    Cena = Convert.ToDecimal(cena),
+                    DataNabycia = Convert.ToDateTime(dataNabycia)
+                };
 
-            var addPlyta = new Plytum
-            {
-                Nazwa = nazwa,
-                RodzajPlyty = rodzajPlyty,
-                Komentarz = null,
-                StatusPosiadania = "z wpf",  
-                IdNabycie = addNabycie.IdNabycie
+                context.Nabycies.Add(addNabycie);
+                context.SaveChanges();
 
-            };
+                var addPlyta = new Plytum
+                {
+                    Nazwa = nazwa,
+                    RodzajPlyty = rodzajPlyty,
+                    Komentarz = null,
+                    StatusPosiadania = "z wpf",
+                    IdNabycie = addNabycie.IdNabycie
 
-            context.Plyta.Add(addPlyta);
-            context.SaveChanges();
-            var plyta = context.Plyta;
-            PlytyDataGrid.ItemsSource = plyta.ToList();
-            PlytyDataGrid.Items.Refresh();
+                };
+
+                context.Plyta.Add(addPlyta);
+                context.SaveChanges();
+                var plyta = context.Plyta;
+                PlytyDataGrid.ItemsSource = plyta.ToList();
+                PlytyDataGrid.Items.Refresh();
+            }
+            MessageBox.Show("Nie podales wystarczajacych danych");
         }
 
     }

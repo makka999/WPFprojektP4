@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DrugiProjektP4_WPF"
+        xmlns:local="clr-namespace:DrugiProjektP4_WPF" xmlns:local1="clr-namespace:DrugiProjektP4_WPF.DataValidation"
         mc:Ignorable="d"
         Title="Wykonawcy" Height="550" Width="900">
+    <Window.DataContext>
+        <local1:ObservableObjectWykonawca/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600"/>
@@ -24,13 +28,38 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
             <Label>Wykonawca</Label>
             <ComboBox Name="ComboBoxWykonawca" GotMouseCapture="ComboBoxWykonawca_GotMouseCapture" SelectionChanged="ComboBoxWykonawca_SelectionChanged"></ComboBox>
-            <TextBox Name="BoxWykonawca">Podaj wykonawce</TextBox>
+            <TextBox Name="BoxWykonawca" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="boxWykonawca" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:MaxCharacterRule MaxCharacters="80"/>
+                            <local1:EmptyRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Button Content="Dodaj wykonawce" Click="Button_ClickDodajWykonawce"></Button>
             <Label>Dodawanie artysty</Label>
             <Label>Nazwa</Label>
-            <TextBox Name="BoxNazwa" >Podaj artyste</TextBox>
+            <TextBox Name="BoxNazwa" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="boxNazwa" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:MaxCharacterRule MaxCharacters="80"/>
+                            <local1:EmptyRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Label>Rola</Label>
-            <TextBox Name="BoxRola">Podaj role</TextBox>
+            <TextBox Name="BoxRola" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="boxRola" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:MaxCharacterRule MaxCharacters="40"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text></TextBox>
             <Button Content="Dodaj artyste" Click="Button_ClickDodajCzlonka"></Button>
         </StackPanel>
     </Grid>

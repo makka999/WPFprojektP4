@@ -43,7 +43,11 @@ namespace DrugiProjektP4_WPF
             PlytyModyfiDataGrid.ItemsSource = plytaModyfi.ToList();
 
 
-            
+            List<Wykonawca> wykonawcas = context.Wykonawcas.ToList();
+            ComboBoxWykonawca.ItemsSource = wykonawcas;
+            ComboBoxWykonawca.DisplayMemberPath = "Wykonawca1";
+            ComboBoxWykonawca.SelectedValuePath = "IdWykonawca";
+            ComboBoxWykonawca.SelectedIndex = 1;
 
             //object zespoly = context.Wykonawcas;
             //var wykonaw = zespoly as Wykonawca;
@@ -69,36 +73,37 @@ namespace DrugiProjektP4_WPF
 
         private void Button_Add(object sender, RoutedEventArgs e)
         {
+            
             var tytul = TytulBox.Text;
             var gatunek = GarynekBox.Text;
 
-            //ComboBoxItem idwykonawca = (ComboBoxItem)ComboBoxWykonawca.SelectedItem;
-            //int wykonawca = Convert.ToInt16(idwykonawca);
-            //var wykonawca = Convert.ToInt32(ComboBoxWykonawca.SelectedValuePath);
-            //if (ComboBoxWykonawca.SelectedValuePath != null)
-            //{
-            //    wykonawca = ComboBoxWykonawca.SelectedValue;
-            //}
-
-            using (var _context = new KolekcjaPlytContext())
+            if (string.IsNullOrEmpty(tytul))
             {
-                var addUtwor = new Utwor
-                {
-                    Tytul = tytul,
-                    GatunekMuzyczny = gatunek,
-                    IdPlyta = UsedPlyta.IdPlyta,
-                    IdWykonawca =  (int)ComboBoxWykonawca.SelectedValue
-                };
-                _context.Utwors.Add(addUtwor);
-                _context.SaveChanges();
-
-                var result = context.Utwors.Where(p => p.IdPlyta == addUtwor.IdPlyta);
-
-                UtworDataGrid.ItemsSource = result.ToList();
-
-
+                MessageBox.Show("Nie podales tytulu");
             }
+            else
+            {
 
+
+                using (var _context = new KolekcjaPlytContext())
+                {
+                    var addUtwor = new Utwor
+                    {
+                        Tytul = tytul,
+                        GatunekMuzyczny = gatunek,
+                        IdPlyta = UsedPlyta.IdPlyta,
+                        IdWykonawca = (int)ComboBoxWykonawca.SelectedValue
+                    };
+                    _context.Utwors.Add(addUtwor);
+                    _context.SaveChanges();
+
+                    var result = context.Utwors.Where(p => p.IdPlyta == addUtwor.IdPlyta);
+
+                    UtworDataGrid.ItemsSource = result.ToList();
+
+
+                }
+            }
         }
 
         private void Button_ModPlyta(object sender, RoutedEventArgs e)
@@ -106,13 +111,6 @@ namespace DrugiProjektP4_WPF
             contextForPlyta.SaveChanges();
         }
 
-
-        private void Box_LostFocus(object sender, RoutedEventArgs e)
-        {
-            string txt = sender as string;
-
-
-        }
 
         private void Button_Add_Wykonawca(object sender, RoutedEventArgs e)
         {
@@ -127,5 +125,7 @@ namespace DrugiProjektP4_WPF
             ComboBoxWykonawca.DisplayMemberPath = "Wykonawca1";
             ComboBoxWykonawca.SelectedValuePath = "IdWykonawca";
         }
+
+
     }
 }

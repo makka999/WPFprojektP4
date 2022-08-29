@@ -25,6 +25,11 @@ namespace DrugiProjektP4_WPF
         public Wykonawcy()
         {
             InitializeComponent();
+            List<Wykonawca> wykonawcas = context.Wykonawcas.ToList();
+            ComboBoxWykonawca.ItemsSource = wykonawcas;
+            ComboBoxWykonawca.DisplayMemberPath = "Wykonawca1";
+            ComboBoxWykonawca.SelectedValuePath = "IdWykonawca";
+            ComboBoxWykonawca.SelectedIndex = 1;
         }
         private void ComboBoxWykonawca_GotMouseCapture(object sender, MouseEventArgs e)
         {
@@ -32,9 +37,6 @@ namespace DrugiProjektP4_WPF
             ComboBoxWykonawca.ItemsSource = wykonawcas;
             ComboBoxWykonawca.DisplayMemberPath = "Wykonawca1";
             ComboBoxWykonawca.SelectedValuePath = "IdWykonawca";
-
-
-
         }
 
 
@@ -48,16 +50,22 @@ namespace DrugiProjektP4_WPF
         private void Button_ClickDodajWykonawce(object sender, RoutedEventArgs e)
         {
             var wykonawca = BoxWykonawca.Text;
-
-            using (var _context = new KolekcjaPlytContext())
+            if (string.IsNullOrEmpty(wykonawca))
             {
-                var addWykonawca = new Wykonawca
+                MessageBox.Show("Nie podales wykonawcy");
+            }
+            else
+            {
+                using (var _context = new KolekcjaPlytContext())
                 {
-                    Wykonawca1 = wykonawca
-                };
-                _context.Wykonawcas.Add(addWykonawca);
-                _context.SaveChanges();
+                    var addWykonawca = new Wykonawca
+                    {
+                        Wykonawca1 = wykonawca
+                    };
+                    _context.Wykonawcas.Add(addWykonawca);
+                    _context.SaveChanges();
 
+                }
             }
         }
 
@@ -65,8 +73,13 @@ namespace DrugiProjektP4_WPF
         {
             var nazwa = BoxNazwa.Text;
             var rola = BoxRola.Text;
-            if (WybranyWykonawca != null)
+
+            if (string.IsNullOrEmpty(nazwa))
             {
+                MessageBox.Show("Nie podales artysty");
+            }
+            else
+            { 
                 using (var _context = new KolekcjaPlytContext())
                 {
                     var addCzlonek = new Czlonek
@@ -84,6 +97,7 @@ namespace DrugiProjektP4_WPF
                 var result = context.Czloneks.Where(c => c.IdWykonawca == WybranyWykonawca).ToList();
                 CzlonekDataGrid.ItemsSource = result;
             }
+
             
         }
     }
