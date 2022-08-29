@@ -60,34 +60,46 @@ namespace DrugiProjektP4_WPF
             var nazwa = NazwaBox.Text;
             var rodzajPlyty = RodzajPlytyBox.Text;
 
-            if (!string.IsNullOrEmpty(dataNabycia) && !string.IsNullOrEmpty(nazwa) && !string.IsNullOrEmpty(rodzajPlyty))
+            if (!string.IsNullOrEmpty(Convert.ToString(dataNabycia)))
             {
-                var addNabycie = new Nabycie
+                if (!string.IsNullOrEmpty(Convert.ToString(cena)))
                 {
-                    Cena = Convert.ToDecimal(cena),
-                    DataNabycia = Convert.ToDateTime(dataNabycia)
-                };
+                    if (!string.IsNullOrEmpty(Convert.ToString(nazwa)))
+                    {
+                        if (!string.IsNullOrEmpty(Convert.ToString(rodzajPlyty)))
+                        {
+                            var addNabycie = new Nabycie
+                            {
+                                Cena = Convert.ToDecimal(cena),
+                                DataNabycia = Convert.ToDateTime(dataNabycia)
+                            };
 
-                context.Nabycies.Add(addNabycie);
-                context.SaveChanges();
+                            context.Nabycies.Add(addNabycie);
+                            context.SaveChanges();
 
-                var addPlyta = new Plytum
-                {
-                    Nazwa = nazwa,
-                    RodzajPlyty = rodzajPlyty,
-                    Komentarz = null,
-                    StatusPosiadania = "z wpf",
-                    IdNabycie = addNabycie.IdNabycie
+                            var addPlyta = new Plytum
+                            {
+                                Nazwa = nazwa,
+                                RodzajPlyty = rodzajPlyty,
+                                Komentarz = null,
+                                StatusPosiadania = "z wpf",
+                                IdNabycie = addNabycie.IdNabycie
 
-                };
+                            };
 
-                context.Plyta.Add(addPlyta);
-                context.SaveChanges();
-                var plyta = context.Plyta;
-                PlytyDataGrid.ItemsSource = plyta.ToList();
-                PlytyDataGrid.Items.Refresh();
+                            context.Plyta.Add(addPlyta);
+                            context.SaveChanges();
+                            var plyta = context.Plyta;
+                            PlytyDataGrid.ItemsSource = plyta.ToList();
+                            PlytyDataGrid.Items.Refresh();
+                        }
+                        else MessageBox.Show("Brak rodzaju plyty");
+                    }
+                    else MessageBox.Show("Brak nazwy");
+                }
+                else MessageBox.Show("Brak ceny");
             }
-            MessageBox.Show("Nie podales wystarczajacych danych");
+            else MessageBox.Show("Brak daty");
         }
 
     }
