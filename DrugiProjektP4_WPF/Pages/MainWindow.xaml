@@ -1,0 +1,88 @@
+﻿<Window x:Class="DrugiProjektP4_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DrugiProjektP4_WPF" xmlns:local1="clr-namespace:DrugiProjektP4_WPF.DataValidation"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1200">
+
+        <!--https://stackoverflow.com/questions/21976803/wpf-datagrid-style-->
+    <Window.DataContext>
+        <local:ObservableOblectMainWindow/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ScrollViewer MaxHeight="500">
+            <DataGrid x:Name="PlytyDataGrid" Margin="20"
+            HorizontalAlignment="Center" MouseDoubleClick="PlytyDataGrid_MouseDoubleClick" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding IdPlyta, Mode=OneWay}" Header="Id" Width="45"/>
+                    <DataGridTextColumn Binding="{Binding Nazwa, Mode=OneWay}" Header="Nazwa" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding RodzajPlyty, Mode=OneWay}" Header="RodzajPlyty" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding StatusPosiadania, Mode=OneWay}" Header="StatusPosiadania" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Komentarz, Mode=OneWay}" Header="Komentarz" Width="*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Label>Data nabycia</Label>
+                    <TextBox Name="DataNabyciaBox" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                        <TextBox.Text>
+
+                            <Binding Path="dataNabyciaBox" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local1:DataRule/>
+                                    <local1:EmptyRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label>Cena</Label>
+                    <TextBox Name="CenaBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label>Nazwa</Label>
+                    <TextBox Name="NazwaBox" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                        <!--<TextBox.InputBindings>
+                            <MouseBinding Command="{}" MouseAction="LeftClick"/>
+                        </TextBox.InputBindings>-->
+                        <TextBox.Text>
+                            
+                            <Binding Path="nazwaBox" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <local:MaxCharacterRule MaxCharacters="80"/>
+                                    <local1:EmptyRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                            
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label>Rodzaj plyty</Label>
+                    <TextBox Name="RodzajPlytyBox" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+                        <TextBox.Text>
+                            <Binding Path="rodzajPlytyBox" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <local:MaxCharacterRule MaxCharacters="20"/>
+                                    <local1:EmptyRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Dodaj plyte" Click="Botton_AddPlyty"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -3,27 +3,41 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:l="clr-namespace:DrugiProjektP4_WPF">
 
+    <ControlTemplate x:Key="errorTemplate">
+        <Border BorderBrush="OrangeRed" BorderThickness="2">
+            <Grid>
+                <AdornedElementPlaceholder/>
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="OrangeRed"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Margin="0,-40,0,0"/>
+            </Grid>
+        </Border>
+    </ControlTemplate>
 
+    <Style TargetType="DataGrid">
+        <Style.Triggers>
+            <Trigger Property="Focusable" Value="True">
+                <Setter Property="Background" Value="Aqua"/>
+            </Trigger>
 
+ 
+
+        </Style.Triggers>
+    </Style>
     <Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Foreground" Value="#FFB3B3B3"/>
             <Setter Property="Height" Value="25"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#FF262626"/>
-                </Trigger>
+        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+            <Setter Property="Background" Value="#FF383838"/>
+        </Trigger>
 
-                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                    <Setter Property="Background" Value="#FF383838"/>
-                </Trigger>
-
-                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                    <Setter Property="Background" Value="#FF333333"/>
-                </Trigger>
-
-            </Style.Triggers>
-        </Style>
+        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+            <Setter Property="Background" Value="#FF333333"/>
+        </Trigger>
+        </Style.Triggers>
+    </Style>
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Foreground" Value="#FF19A715"/>
         <Setter Property="Background" Value="#FF383838"/>
@@ -51,10 +65,15 @@
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="Margin" Value="8"/>
         <Setter Property="MinWidth" Value="40"/>
-        <Setter Property="l:EventHelper.LeftClick" Value="{Binding MyCommand}"/>
+        <!--<Setter Property="l:EventHelper.LeftClick" Value="{Binding MyCommand}"/>-->
     </Style>
     <Style TargetType="{x:Type ComboBox}">
         <Setter Property="Margin" Value="8"/>
     </Style>
+    <!--<Style TargetType="b">
+        <Setter Property="Background" Value="Aqua"/>
+        <Setter Property="BorderBrush" Value="Gainsboro"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>-->
 </ResourceDictionary>
 

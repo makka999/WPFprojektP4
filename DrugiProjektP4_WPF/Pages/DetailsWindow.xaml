@@ -1,0 +1,57 @@
+﻿<Window x:Class="DrugiProjektP4_WPF.DetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DrugiProjektP4_WPF"
+        mc:Ignorable="d"
+        Title="DetailsWindow" Height="650" Width="1100">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="0">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <DataGrid x:Name="PlytyModyfiDataGrid" Margin="20"
+            HorizontalAlignment="Center" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" IsReadOnly="False">
+
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Nazwa}" Header="Nazwa" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding RodzajPlyty}" Header="RodzajPlyty" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding StatusPosiadania}" Header="StatusPosiadania" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Komentarz}" Header="Komentarz" Width="100"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+                <Button Content="Zapisz" Click="Button_ModPlyta"></Button>
+            </StackPanel>
+            <ScrollViewer MaxHeight="370">
+                <DataGrid x:Name="UtworDataGrid" AutoGenerateColumns="False" 
+            HorizontalAlignment="Center" CanUserAddRows="False" IsReadOnly="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Tytul}" Header="Tytul" Width="160"/>
+                        <DataGridTextColumn Binding="{Binding GatunekMuzyczny}" Header="Gatunek Muzyczny" Width="160"/>
+
+                     </DataGrid.Columns>
+
+                </DataGrid>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Zapisz zmiany" Click="Button_Save"></Button>
+                <Button Content="Reset" Click="Button_Reset"></Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+            <Label>Tytul</Label>
+            <TextBox Name="TytulBox" LostFocus="Box_LostFocus"></TextBox>
+            <Label>Gatunek Muzyczny</Label>
+            <TextBox Name="GarynekBox" LostFocus="Box_LostFocus"></TextBox>
+            <Label>Wykonawca</Label>
+            <ComboBox Name="ComboBoxWykonawca" GotMouseCapture="ComboBoxWykonawca_GotMouseCapture"></ComboBox>
+            <Button Content="Dodaj wykonawce" Click="Button_Add_Wykonawca"></Button>
+            <Button Content="Dodaj utwor" Click="Button_Add"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

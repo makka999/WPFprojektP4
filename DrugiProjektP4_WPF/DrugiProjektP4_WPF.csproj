@@ -25,8 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="LogicPages\" />
-    <Folder Include="Pages\" />
+    <Page Include="App.xaml" />
   </ItemGroup>
 
 </Project>
